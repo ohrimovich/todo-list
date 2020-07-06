@@ -32,9 +32,14 @@ body {
     background-color: khaki;
 }
 .task {
+    position: relative;
     padding: 5px;
     border: 1px solid grey;
     width: 45%;
     background-color: lightgrey;
     margin-bottom: 10px;
+}
+.completed {
+    background-color: limegreen;
+    text-decoration: line-through;
 }
