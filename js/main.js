@@ -22,10 +22,21 @@ class Tasks {
         })
     } 
 
+    createDiv(taskId, comleted) {
+        let div = document.createElement('div');
+        div.className = comleted ? 'task completed' : 'task';
+        div.addEventListener('click', () => {
+            const task = this.tasksArr.find(task => task.id == taskId);
+            task.completed = !task.completed; 
+            this.deleteAllTasks();
+            this.renderArr();
+        })
+            return div;
+    }
+
     renderArr() {
         this.tasksArr.forEach(task => {
-            let div = document.createElement('div');
-            div.className = 'task';
+            const div = this.createDiv(task.id, task.completed);
             div.innerHTML = task.title;
             div.append(this.createDeleteButton(task.id));
             document.body.append(div);
@@ -51,7 +62,8 @@ class Tasks {
   createDeleteButton(taskId) {
     let button = document.createElement('button');
     button.innerHTML = 'X';
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (event) => {
+        event.stopPropagation();
         this.tasksArr = this.tasksArr.filter(task => task.id != taskId);
         this.deleteAllTasks();
         this.renderArr();
