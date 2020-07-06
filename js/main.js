@@ -1,6 +1,7 @@
 class Tasks {
     addButton = document.querySelector('.add-button');
     input = document.querySelector('.input');
+    container = document.querySelector('.container');
     constructor() {
         this.tasksArr = [];
         this.addTask();
@@ -39,7 +40,7 @@ class Tasks {
             const div = this.createDiv(task.id, task.completed);
             div.innerHTML = task.title;
             div.append(this.createDeleteButton(task.id));
-            document.body.append(div);
+            this.container.append(div);
             console.log(task)
         })
     }
@@ -62,6 +63,7 @@ class Tasks {
   createDeleteButton(taskId) {
     let button = document.createElement('button');
     button.innerHTML = 'X';
+    button.className = 'remove-button'
     button.addEventListener('click', (event) => {
         event.stopPropagation();
         this.tasksArr = this.tasksArr.filter(task => task.id != taskId);
