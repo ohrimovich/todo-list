@@ -13,7 +13,7 @@ class Tasks {
             const value = this.input.value.trim();
             if(value) {
                 this.tasksArr.push({
-                    id: this.tasksArr[this.tasksArr.length - 1].id + 1,
+                    id: this.tasksArr.length == 0 ? 1 : this.tasksArr[this.tasksArr.length - 1].id + 1,
                     completed: false,
                     title: value
                 })
